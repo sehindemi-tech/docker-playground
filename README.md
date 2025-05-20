@@ -26,7 +26,7 @@ This application expects a MySQL database to be running and accessible. It's rec
 
 ### Step 1: Create a `docker-compose.yml` file
 
-```yaml
+
 version: '3.8'
 
 services:
