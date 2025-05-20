@@ -44,26 +44,27 @@ services:
       - "5002:5002"
     depends_on:
       - mydb
-Step 2: Build and Start the Containers
 
-docker-compose up --build
+**Step 2: Build and Start the Containers
+**
+  docker-compose up --build
 
-Step 3: Access the App
+**Step 3: Access the App
+**
+  Open your browser and navigate to: http://localhost:5002
+  
+  You should see output similar to:
+  
+  Hello, World! MySQL version: 5.7.x
 
-Open your browser and navigate to: http://localhost:5002
-
-You should see output similar to:
-
-Hello, World! MySQL version: 5.7.x
-
-Notes
+**Notes**
 
     The Flask app connects to the MySQL container using the hostname mydb (as defined in Docker Compose).
 
     Ensure the mysqlclient Python package is compatible with your Python and MySQL versions.
 
-Stopping the App
-
-Press Ctrl+C in the terminal running Docker Compose, then run:
+**Stopping the App
+**
+  Press Ctrl+C in the terminal running Docker Compose, then run:
 
 docker-compose down
