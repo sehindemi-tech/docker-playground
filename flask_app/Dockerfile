@@ -1,4 +1,6 @@
-FROM python:3.9-slim
+FROM python:3.9-slim AS build
+
+WORKDIR /app
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -7,12 +9,24 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
-
 COPY . .
 
-RUN pip install flask mysqlclient
+RUN pip install --upgrade pip && \
+    pip install --prefix=/install flask mysqlclient
 
-EXPOSE 5000
+
+FROM python:3.9-slim 
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=build /install /usr/local/
+
+COPY --from=build /app /app
+
+EXPOSE 5002
 
 CMD ["python", "app.py"]

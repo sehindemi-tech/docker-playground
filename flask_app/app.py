@@ -10,7 +10,7 @@ def hello_world():
       host="mydb",    # Hostname of the MySQL container
       user="root",    # Username to connect to MySQL
       passwd="my-secret-pw",  # Password for the MySQL user
-      db="mysql"      # Name of the database to connect to
+      db="flaskdb"      # Name of the database to connect to
   )
   cur = db.cursor()
   cur.execute("SELECT VERSION()")
